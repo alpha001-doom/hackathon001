@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Are you ready?</title>
+    <style>
+        body{
+            background-image: url(../images/ready.jpg);
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        #count{
+            font-size: 150px;
+            position: absolute;
+            color: white;
+            bottom: 50px;
+            left: 45%;
+            right: 55%;
+        }
+        #stp{
+            position: absolute;
+            bottom: 100px;
+            left: 25%;
+        }
+        #sta{
+            position: absolute;
+            bottom: 100px;
+            right: 25%;
+        }
+        #sta:hover button{
+            background-color: rgba(20, 20, 151, 0.575);
+            color: white;
+            transition-duration: 0.6s;
+        }
+        #stp:hover button{
+            background-color: rgba(248, 13, 13, 0.575);
+            color: white;
+            transition-duration: 0.6s;
+        }
+        #setname{
+            margin-left: 40%;
+            margin-top: 30px;
+        }
+        #placename{
+            padding: 6px 13px 6px 13px;
+            border-radius: 19px;
+            box-shadow: 2px 7px 5px ;
+        }
+    </style>
+</head>
+<body>
+    <div id="setname">
+        <input type="text" id="placename" placeholder="Enter Your name">
+        <br>
+        <button id="btn" style="margin-left: 69px;margin-top: 20px;padding: 3px 7px 3px 7px;" onclick="addname()">Enter</button>
+    </div>
+    <div>
+        
+        <!-- <audio controls>
+            <source src="../music/48938225_epic-voice-countdown-5-4-3-2-1_by_megakyle_preview.mp3">
+        </audio> -->
+        <div>
+            <div id="sta">
+                <button style="padding: 20px 50px 20px 50px;font-size: 30px;" onclick="start()">Yes</button>
+                
+            </div>
+            <div id="stp">
+                <button style="padding: 20px 50px 20px 50px;font-size: 30px;" onclick="stop()">No</button>
+            </div>
+        </div>
+    </div>
+    <div>
+        <span id="count"></span>
+        
+    </div>
+
+
+    <script>
+        function start(){
+            if (placename.value!=""){
+                placename.value=""
+                let audio=new Audio("../music/48938225-epic-voice-countdown-5-4-3-2-1-by-megakyle-preview_MZlNHQX1.mp3");
+                audio.play()
+                document.getElementById('sta').style.visibility="hidden"
+                document.getElementById('stp').style.visibility="hidden"
+                document.getElementById('placename').style.visibility="hidden"
+                document.getElementById('btn').style.visibility="hidden"
+                let i=5;
+                setInterval(()=>{
+                    if (i>0){
+                     
+                    document.getElementById('count').innerHTML=i;
+                    i--
+                    }
+                    
+                    else{
+                        // let audio1=new Audio("../music/088186_let39s-gowav-86025.mp3");
+                        // audio1.play()
+                        location="../Spin/main.html"
+                    }
+                },980)
+            }
+            else{
+                alert("enter name")
+                placename.value=""
+            }
+        }
+        function stop(){
+            document.getElementById('sta').style.visibility="hidden"
+            document.getElementById('stp').style.visibility="hidden"
+            location="../main.html"
+        }
+        let placename=document.getElementById('placename')
+        function addname(){
+            if (placename.value!=""){
+                let name=JSON.parse(localStorage.getItem("name"))||[];
+                name.push(placename.value);
+                localStorage.setItem("name",JSON.stringify(name));
+                alert("Name added");
+                placename.style.visibility="hidden";
+                document.getElementById('btn').style.visibility="hidden";
+            }
+            else{
+                alert("Enter name")
+            }
+        }
+    </script>
+</body>
+</html>

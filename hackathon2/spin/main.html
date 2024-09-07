@@ -1,0 +1,321 @@
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SpinWheel for L&J</title>
+    <link href="spinwheel.css" rel="stylesheet"/>
+      <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap");
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+  body{
+    background-image: url(../images/game.jpeg);
+    
+    background-position:10px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+  }
+  .wrapper {
+    
+    max-width: 34.37em;
+    max-height: 90vh;
+    position: absolute;
+    /* transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%; */
+    padding: 0em 3em 3em 3em;
+    
+    
+    
+  }
+  .container {
+    margin-top: 30px;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 0px;
+  }
+  #wheel {
+    max-height: inherit;
+    width: inherit;
+    top: 0;
+    padding: 0;
+  }
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  #spin-btn {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 57%;
+    left: 50%;
+    height: 26%;
+    width: 29%;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 0;
+    background: radial-gradient(#fc71e4 50%, #c769f3 85%);
+    color: #c61616;
+    text-transform: uppercase;
+    font-size: 1.8em;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  
+  }
+  
+  
+  img {
+    position: absolute;
+    width: 4em;
+    top: 45%;
+    right: -6%;
+  }
+  #final-value {
+    font-size: 1.5em;
+    text-align: center;
+    margin-top: 1.5em;
+    color: #202020;
+    font-weight: 500;
+  }
+  #titlehead{
+    color: white;
+    background-color: black;
+    position:fixed;
+    top: 1px;
+    z-index: 4;
+  }
+  @media screen and (max-width: 768px) {
+    .wrapper {
+      font-size: 12px;
+    }
+    img {
+      right: -5%;
+    }
+  }
+  #justicel{
+    text-decoration: dashed;
+    text-shadow: 2px 2px 4px white;
+    color: white;
+    background-color: rgba(128, 128, 128, 0.514);
+    width: 500px;
+    padding-top: 5px;
+  }
+  #final-value{
+    background-color: black;
+    color: white;
+    width: 800px;
+    font-size: xx-large;
+    position: absolute;
+    left: 4px;
+    margin-top: 10px;
+  }
+  #contents{
+    padding-left: 5px;
+    background-image:linear-gradient(rgba(85, 25, 35, 0.644),rgba(0, 0, 255, 0.57));
+    background-position:10px;
+    /* background-repeat: no-repeat; */
+    background-size: cover;
+     
+    position: absolute;
+    right: -460px;
+    top: 5%;
+    width: 455px;
+  }
+  td button{
+    -webkit-text-stroke: 1px;
+    color: rgb(0, 255, 13);
+    text-shadow: 1px 3px 4px;
+    /* font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    background-color: rgba(241, 241, 241, 0.13);
+    border: 0px;
+    font-size: 27px;
+    margin-bottom: 30px;
+  }
+  td button:hover{
+    box-shadow: 2px 2px 5px rgb(255, 0, 0);
+    font-size: 30px;
+    transition-duration: 0.7s;
+    transition-timing-function: linear;
+    border-bottom: 2px solid rgb(94, 0, 0);
+    border-right: 2px solid rgb(94, 0, 0);
+  }
+  #go{
+    padding: 10px 33px 10px 33px;
+    background-color: rgb(255, 238, 0);
+    color: rgb(255, 0, 0);
+    font-size: larger;
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+    border: 0px;
+    border-radius: 25px;
+  }
+  #go:hover{
+    background-color:rgb(255, 0, 0) ;
+    color: rgb(255, 238, 0);
+  }
+      </style>
+  </head>
+  <body>
+    
+    <!-- <CENter><h1 id="titlehead">THIS WEBSITE DEVELOPE YOUR KNOWLEDGE IN FUNDAMENTAL OF YOUR RIGHTS</h1></CENter> -->
+    <div class="wrapper">
+      
+      <div class="container">
+        <h1 id="justicel">welcome to justice league</h1>
+        <canvas id="wheel"></canvas>
+        <button id="spin-btn"> 👊Spin</button>
+        <img style="position: absolute;top: 260px;background-color: rgba(0, 0, 0, 0);color:rgba(255, 255, 255, 0);font-size: x-large;" src="../images/aarr.jpeg" alt="spinner arrow" />
+      </div>
+      <div id="final-value">
+        <p>CLICK THE SPIN TO GET THE TOPIC</p>
+      </div>
+      
+      <div id="contents">
+        <P style="color: aliceblue;"><TAble>
+           <tr><td><button> 1.Right to equality</button></td></tr>
+           <tr><td><button>2.Right to freedom</button></td></tr>
+           <tr><td><button>3.Right against exploitation</button></td></tr>
+           <tr><td><button>4.Right to freedom of religion</button></td></tr>
+           <tr><td><button>5.Cultural and educational rights</button></td></tr>
+           <tr><td><button>6.Right to constitutional remedies</button></td></tr></TAble></P>
+        </div>
+      </div>
+ <button id="go" onclick="getop()">Proceed</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.1.0/chartjs-plugin-datalabels.min.js"></script>
+    <script>
+
+let getval;
+
+const wheel = document.getElementById("wheel");
+const spinBtn = document.getElementById("spin-btn");
+const finalValue = document.getElementById("final-value");
+
+const rotationValues = [
+  { minDegree: 0, maxDegree: 30, value: 2 },
+  { minDegree: 31, maxDegree: 90, value: 1 },
+  { minDegree: 91, maxDegree: 150, value: 6 },
+  { minDegree: 151, maxDegree: 210, value: 5 },
+  { minDegree: 211, maxDegree: 270, value: 4 },
+  { minDegree: 271, maxDegree: 330, value: 3 },
+  { minDegree: 331, maxDegree: 360, value: 2 },
+];
+const data = [16, 16, 16, 16, 16, 16];
+var pieColors = [
+  "#15e121",
+  "#b1124a",
+  "#ff340f",
+  "#b124da",
+  "#20b2aa",
+  "#db7093",
+];
+
+let myChart = new Chart(wheel, {
+
+  plugins: [ChartDataLabels],
+ 
+  type: "pie",
+  data: {
+    labels: [1, 2, 3, 4, 5, 6],
+    datasets: [
+      {
+        backgroundColor: pieColors,
+        data: data,
+      },
+    ],
+  },
+  options: {
+    responsive: true,
+    animation: { duration: 0 },
+    plugins: {
+      tooltip: false,
+      legend: {
+        display: false,
+      },
+      datalabels: {
+        color: "#ffffff",
+        formatter: (_, context) => context.chart.data.labels[context.dataIndex],
+        font: { size: 24 },
+      },
+    },
+  },
+});
+
+const valueGenerator = (angleValue) => {
+  for (let i of rotationValues) {
+    if (angleValue >= i.minDegree && angleValue <= i.maxDegree) {
+      getval=i.value;
+      finalValue.innerHTML = `<p>THE TOPIC NUMBER IS ${i.value} 
+        LETS START TO LEARN</p>`;
+      spinBtn.disabled = false;
+      console.log(getval);
+      break;
+    }
+  }
+};
+
+
+let count = 0;
+
+let resultValue = 101;
+
+spinBtn.addEventListener("click", () => {
+  spinBtn.disabled = true;
+ 
+  finalValue.innerHTML = `<p>I THINK YOU'RE READY TO LEARN!</p>`;
+  
+  let randomDegree = Math.floor(Math.random() * (355 - 0 + 1) + 0);
+  
+  let rotationInterval = window.setInterval(() => {
+
+  
+    myChart.options.rotation = myChart.options.rotation + resultValue;
+  
+    myChart.update();
+  
+    if (myChart.options.rotation >= 360) {
+      count += 1;
+      resultValue -= 5;
+      myChart.options.rotation = 0;
+    } else if (count > 15 && myChart.options.rotation == randomDegree) {
+      valueGenerator(randomDegree);
+      clearInterval(rotationInterval);
+      count = 0;
+      resultValue = 101;
+    }
+  }, 10);
+});
+
+
+function getop(){
+  if (getval==1){
+    window.location="../topics/t1.html";
+  }
+  else if(getval==2){
+    window.location="../topics/t2.html";
+  }
+  else if(getval==3){
+    window.location="../topics/t3.html";
+  }
+  else if(getval==4){
+    window.location="../topics/t4.html";
+  }
+  else if(getval==5){
+    window.location="../topics/t5.html";
+  }
+  else if(getval==6){
+    window.location="../topics/t6.html";
+  }
+}
+
+    </script>
+  </body>
+</html>

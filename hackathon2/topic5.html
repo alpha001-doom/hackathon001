@@ -1,0 +1,655 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body{
+            background-image:linear-gradient(rgba(230, 230, 230, 0.555),rgba(4, 13, 146, 0.5)),url(./images/back.jpg);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+        }
+        #question{
+            color: rgb(161, 240, 15);
+            font-size: 30px;
+            /* margin-bottom: 25px; */
+        }
+        #questiondiv{
+            margin-bottom: 25px;
+            width: 750px;
+        }
+        #option1{
+            /* margin-top: 25px; */
+            font-size: x-large;
+            color: yellow;
+        }
+        #option2{
+            font-size: x-large;
+            color: yellow;
+        }
+        #option3{
+            font-size: x-large;
+            color: yellow;
+        } 
+        #option4{
+            font-size: x-large;
+            color: yellow;
+        }
+        #set{
+            margin-left: 20%;
+            margin-top: 13%;
+        }
+        #submit{
+            margin-left: 40%;
+            margin-top: 40px;
+        }
+
+        #actual{
+            visibility: hidden;
+            font-size: x-large;
+            color: white;
+        }
+        #answer{
+            font-size: xx-large;
+            color: white;
+        }
+         #whole{
+            position: absolute;
+            top: 75%;
+            left: 22%;
+            /* animation: ans 1s linear 0s; */
+         }
+
+        #nextbutton{
+            position: absolute;
+            top: 55%;
+            right:150px;
+            font-size: xx-large;
+            background-color: rgba(0, 0, 0, 0);
+            border: 1px solid black;
+            padding: 7px 15px 7px 15px;
+            border-radius: 20px;
+        }
+        #nextbutton:hover{
+            background-color: rgba(128, 128, 128, 0.562);
+            
+            transition-duration: 0.4s;
+        }
+        #nextbutton:hover i{
+            color: black;
+        }
+        #sno{
+            color: rgb(161, 240, 15);
+            font-size: xx-large;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+        #snodot{
+            color: rgb(161, 240, 15);
+            font-size: xx-large;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+        #submitbtn{
+            padding: 7px 13px 7px 13px;
+            border-radius: 20px;
+            border: 1px solid rgb(0, 0, 0);
+            box-shadow: 1px 2px 2px rgb(95, 95, 95);
+            
+            background-color: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
+        }
+        #submitbtn:hover{
+            background-color: aqua;
+            color: rgb(0, 0, 0);
+            box-shadow: 1px 2px 2px rgb(82, 197, 143);
+        }
+        #gif{
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            left: 0px;
+            bottom: 0px;
+            background-color: rgba(0, 0, 0, 0);
+            opacity: 0.7;
+        }
+        #result{
+            visibility: hidden;
+        }
+        #actual,#answer{
+            color: red;
+        }
+        #scorecard{
+            position: absolute;
+            top: 30px;
+            right: 100px;
+        }
+        #scorehead{
+            font-size: x-large;
+            color: greenyellow;
+        }
+        #score{
+            color: rgb(224, 255, 47);
+            font-size: xx-large;
+        }
+        #final{
+            visibility: hidden;
+            position: absolute;
+            top: 0px;
+            left:0px;
+            bottom: 0px;
+            right: 0px;
+            background-color: rgba(255, 255, 255, 0.753);
+            z-index: 0;
+        }
+        #dispfinal{
+            visibility: hidden;
+            position: absolute;
+            top:50%;
+            left:30%;
+        }
+        #res{
+            color: rgb(68, 0, 255);
+            font-size: 70px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            position: relative;
+            right: 200px;
+        }
+        #scor{
+            color: red;
+            font-size: xx-large;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+        #scorhead{
+            color: darkred;
+            font-size: xx-large;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+    </style>
+</head>
+<body>
+    <div id="final"></div>
+        <div id="dispfinal">
+            <div>
+                <span id="res"></span>
+            </div>
+            <div id="sc">
+                <span id="scorhead">Your Score is:</span>
+                <span id="scor"></span>
+            </div>
+        </div>
+    </div>
+    <div id="result">
+        <img id="gif" src="" width="100%" height="100%">
+    </div>
+     <div id="set">
+        <div id="questiondiv">
+            <span id="sno"></span>
+            <span id="snodot">.</span>
+            <span id="question"></span>
+        </div>
+        <div>
+            <span><input name="option" id="sel1" type="radio"> </span>
+            <span id="option1"></span>
+        </div>
+        <div>
+            <span><input name="option" id="sel2" type="radio"> </span>
+            <span id="option2"></span>
+        </div>
+        <div>
+            <span><input name="option" id="sel3" type="radio"> </span>
+            <span id="option3"></span>
+        </div>
+        <div>
+            <span><input name="option" id="sel4" type="radio"> </span>
+            <span id="option4"></span>
+        </div>
+        <div id="submit">
+            <button id="submitbtn" onclick="check()">Submit</button>
+        </div>
+     </div>
+     <div id="whole">
+        <span id="actual">Actual Previous answer:</span>
+        <span id="answer"></span>
+     </div>
+     <div id="scorecard">
+        <span id="scorehead">Score:</span>
+        <span id="score"></span>
+     </div>
+     <!-- <div>
+       <button id="nextbutton" onclick="next()"><i class="fa-solid fa-greater-than" style="color: #ff0000;"></i></button> 
+     </div> -->
+    
+     <script>
+        let sel1=document.getElementById('sel1');
+        let sel2=document.getElementById('sel2');
+        let sel3=document.getElementById('sel3');
+        let sel4=document.getElementById('sel4');
+
+
+
+
+        let topic1=["A school prohibits students from speaking their native language. What right is being violated?","A university denies admission to a student from a minority community. What article is being violated?","A state government imposes its official language on minority schools. What right is being infringed?","A private school refuses to admit students from a Scheduled Caste background. What article is being violated?","A minority community's educational institution is threatened with closure. What article is being violated?"]
+            let t1op1=["Right to Cultural and educational rights ","Protection of Minority Interests","Right to Freedom of speech and expression","Abolition and untouchability","Right to Establish and Administer Educational Institutions"]
+            let t1op2=["Right to Freedom of Speech and Expression","Reservation for Backward Classes","Right to Conserve Language, Script, and Culture ","Reservation in Public Employment","Protection of Minority Interests"]
+            let t1op3=["Right to Education ","Reservation in Public Employment","Right to Education","Right to Education","Right to Freedom of Worship"]
+            let t1op4=["Right to Conserve Language, Script, and Culture","Right to Establish and Administer Educational Institutions","Right to Cultural and Educational Rights"," Prohibition of Discrimination on Grounds of Religion, Race, Caste"," Right to Freedom of Conscience"]
+            
+            let set=document.getElementById('set');
+            // console.log(topic1[3])
+            let ansdisp=["Right to Equality Before the Law (Article 14): Ensures equal treatment under the law for all citizens, regardless of caste, creed, or social status. Prevents discrimination and promotes social justice.","Equal Access to Healthcare Regardless of Socioeconomic Status: Ensures everyone receives equal medical attention, regardless of wealth or social status. Essential for public health and well-being.","Right to Life and Safety Regardless of Economic Status: Guarantees the right to life and safety for all individuals, irrespective of wealth or social standing.","Right to Fair Compensation Regardless of Gender: Guarantees fair compensation for workplace injuries, irrespective of gender.","Article 15(1): Prohibition of Discrimination on Grounds of Religion, Race, Caste, Sex, or Place of Birth: Prohibits discrimination based on religion, race, caste, sex, or place of birth."]
+            
+            let crtop=[4,1,2,2,1];
+            //let questiondatas=JSON.parse(localStorage.getItem("Userquestion"))||[];
+            //questiondatas.push(qinput.value);
+            //localStorage.setItem("Userquestion",JSON.stringify(questiondatas));
+            let i=0;
+            let question=document.getElementById('question');
+            let option1=document.getElementById('option1')
+            let option2=document.getElementById('option2')
+            let option3=document.getElementById('option3')
+            let option4=document.getElementById('option4')
+
+            display();
+            function display(){
+                document.getElementById('sno').innerHTML=i+1;
+                question.innerHTML=topic1[i];
+                option1.innerHTML=t1op1[i]
+                option2.innerHTML=t1op2[i]
+                option3.innerHTML=t1op3[i]
+                option4.innerHTML=t1op4[i]
+                
+        
+            }
+            
+            function next(){
+                let audio=new Audio("./music/scary-music-box-for-spooky-scenes-165983.mp3")
+                audio.play()
+                if (i<4){
+                    sel1.checked=false;
+                    sel2.checked=false;
+                    sel3.checked=false;
+                    sel4.checked=false;
+                    i++;
+                    display();
+                    
+                }
+                else{
+                    document.getElementById('submitbtn').style.visibility="hidden";
+                    // document.getElementById('nextbutton').style.visibility="hidden";
+                    // location=""
+                    scored();
+                    
+                }
+            }
+
+
+            let player=JSON.parse(localStorage.getItem("name"));
+        function scored(){
+                document.getElementById('dispfinal').style.visibility="visible"
+                document.getElementById('final').style.visibility="visible"
+                let totalno=5
+                console.log("question"+totalno)
+                document.getElementById('scor').innerHTML=sum;
+                let changesum=sum/100;
+                console.log("sum"+changesum)
+
+                let divide=parseInt(totalno/2);
+
+                if (changesum>divide){
+                    document.getElementById('res').innerHTML="Congratulation  "+player[player.length-1]+"  You WON"
+                }
+                else if(changesum==divide){
+                    document.getElementById('res').innerHTML="Game Tie"
+                }
+                else{
+                    document.getElementById('res').innerHTML="OOPS,You have failed"
+                }
+            }
+            
+                
+
+
+
+
+            let a=0;
+
+
+
+
+            let n1,n2,n3,n4;
+
+      let sum=0;
+        function check(){
+
+           
+            let score=document.getElementById('score')
+            
+
+
+            document.getElementById('actual').style.visibility="hidden";
+            document.getElementById('answer').style.visibility="hidden";
+            if (sel1.checked ==true || sel2.checked==true || sel3.checked==true ||sel4.checked==true){
+                console.log(sel1.checked)
+                if (sel1.checked==true){
+                    n1=1;
+                    if (n1==crtop[a]){
+                        sum+=100;
+                       
+                        score.innerHTML=sum;
+                        let audio=new Audio("./music/correct-83487.mp3");
+                        audio.play()
+                        
+                        // // alert("you are right");
+                        document.getElementById('gif').src="./images/crt.gif";
+                        document.getElementById('result').style.visibility="visible";
+                        // document.getElementById('gif').style.animation="crt 1s linear 0s 1 alternate"
+                        // document.getElementById('gif').animate=(["opacity:0"])
+                        console.log("ans"+crtop[a])
+                        console.log("op"+n1)
+
+                        let count=0;
+                        setInterval(()=>{
+                            if (count==1){
+                                document.getElementById('result').style.opacity="0.5"
+                                count++;
+                            }
+                            else if(count==2){
+                                document.getElementById('result').style.opacity="0.3";
+                                count++;
+                            }
+                            else if(count==3){
+                                document.getElementById('result').style.opacity="0.1"
+                                count++;
+                            }
+                            else{
+                                document.getElementById('result').style.visibility="hidden"
+                                
+                            }
+                        },4000)
+                        a++;
+                        
+                    }
+                    else {
+                        let audio=new Audio("./music/fail-144746.mp3");
+                        audio.play()
+                        console.log("ans"+crtop[a])
+                        document.getElementById('gif').src="./images/wrongans.jpg";
+                        // alert("You are wrong");
+                        let count21=0;
+                        document.getElementById('result').style.transitionTimingFunction="linear"
+                        document.getElementById('result').style.visibility="visible";
+                        setInterval(()=>{
+                            if (count21==1){
+                                document.getElementById('result').style.opacity="1";
+                                document.getElementById('result').style.transitionTimingFunction="linear"
+                                count21++;
+                            }
+                            else if(count21==2){
+                                document.getElementById('result').style.opacity="0.5";
+                                document.getElementById('result').style.transitionTimingFunction="linear"
+                                count21++;
+                            }
+                            else if(count21==3){
+                                document.getElementById('result').style.opacity="1";
+                                document.getElementById('result').style.transitionTimingFunction="linear"
+                                count21++;
+                            }
+                            else{
+                                document.getElementById('result').style.visibility="hidden"
+                                document.getElementById('result').style.transitionTimingFunction="linear"
+                                
+                            }
+                        },4000)
+
+                        document.getElementById('actual').style.visibility="visible";
+                        document.getElementById('answer').style.visibility="visible";
+                        document.getElementById('answer').innerHTML=crtop[a];
+                        a++;
+                        
+                    }
+                }
+                else if (sel2.checked==true){
+                    n2=2;
+                    if (n2==crtop[a]){
+                        let audio=new Audio("./music/correct-83487.mp3");
+                        audio.play()
+                        sum+=100;
+                        score.innerHTML=sum;
+                        // alert("you are right");
+                        document.getElementById('gif').src="./images/crt.gif";
+                        let count31=0;
+                        document.getElementById('result').style.transitionTimingFunction="linear"
+                        document.getElementById('result').style.visibility="visible";
+                        setInterval(()=>{
+                            if (count31==1){
+                                document.getElementById('result').style.opacity="1";
+                                document.getElementById('result').style.transitionTimingFunction="linear"
+                                count31++;
+                            }
+                            else if(count31==2){
+                                document.getElementById('result').style.opacity="0.5";
+                                document.getElementById('result').style.transitionTimingFunction="linear"
+                                count31++;
+                            }
+                            else if(count31==3){
+                                document.getElementById('result').style.opacity="1";
+                                document.getElementById('result').style.transitionTimingFunction="linear"
+                                count31++;
+                            }
+                            else{
+                                document.getElementById('result').style.visibility="hidden"
+                                document.getElementById('result').style.transitionTimingFunction="linear"
+                                
+                            }
+                        },5000)
+                        // document.getElementById('result').style.visibility="visible";
+                        console.log("ans"+crtop[a])
+                        console.log("op"+n2)
+                        a++;
+                        
+                    }
+                    else {
+                        let audio=new Audio("./music/fail-144746.mp3");
+                        audio.play()
+                        console.log("ans"+crtop[a])
+                        // alert("You are wrong");
+                        document.getElementById('gif').src="./images/wrongans.jpg";
+                        // alert("You are wrong");
+                        let count141=0;
+                        document.getElementById('result').style.transitionTimingFunction="linear"
+                        document.getElementById('result').style.visibility="visible";
+                        setInterval(()=>{
+                            if (count141==1){
+                                document.getElementById('result').style.opacity="1";
+                                document.getElementById('result').style.transitionTimingFunction="linear"
+                                count141++;
+                            }
+                            else if(count141==2){
+                                document.getElementById('result').style.opacity="1";
+                                document.getElementById('result').style.transitionTimingFunction="linear"
+                                count141++;
+                            }
+                            else if(count141==3){
+                                document.getElementById('result').style.opacity="1";
+                                document.getElementById('result').style.transitionTimingFunction="linear"
+                                count141++;
+                            }
+                            else{
+                                document.getElementById('result').style.visibility="hidden"
+                                document.getElementById('result').style.transitionTimingFunction="linear"
+                                
+                            }
+                        },4000)
+
+                        document.getElementById('actual').style.visibility="visible";
+                        document.getElementById('answer').style.visibility="visible";
+                        document.getElementById('answer').innerHTML=crtop[a];
+                        a++;
+                        
+                    }
+                }
+                else if (sel3.checked==true){
+                    n3=3;
+                    if (n3==crtop[a]){
+                        let audio=new Audio("./music/correct-83487.mp3");
+                        audio.play()
+                        sum+=100;
+                        score.innerHTML=sum;
+                        document.getElementById('gif').src="./images/crt.gif";
+                        let count51=0;
+                        document.getElementById('result').style.transitionTimingFunction="linear"
+                        document.getElementById('result').style.visibility="visible";
+                        setInterval(()=>{
+                            if (count51==1){
+                                document.getElementById('result').style.opacity="1";
+                                document.getElementById('result').style.transitionTimingFunction="linear"
+                                count51++;
+                            }
+                            else if(count51==2){
+                                document.getElementById('result').style.opacity="0.5";
+                                document.getElementById('result').style.transitionTimingFunction="linear"
+                                count51++;
+                            }
+                            else if(count51==3){
+                                document.getElementById('result').style.opacity="1";
+                                document.getElementById('result').style.transitionTimingFunction="linear"
+                                count51++;
+                            }
+                            else{
+                                document.getElementById('result').style.visibility="hidden"
+                                document.getElementById('result').style.transitionTimingFunction="linear"
+                                
+                            }
+                        },4000)
+                        // document.getElementById('result').style.visibility="visible";
+                        console.log("ans"+crtop[a])
+                        console.log("op"+n3)
+                        a++;
+                        
+                    }
+                    else {
+                        let audio=new Audio("./music/fail-144746.mp3");
+                        audio.play()
+                        console.log("ans"+crtop[a])
+                        document.getElementById('gif').src="./images/wrongans.jpg";
+                        // alert("You are wrong");
+                        let count151=0;
+                        document.getElementById('result').style.transitionTimingFunction="linear"
+                        document.getElementById('result').style.visibility="visible";
+                        setInterval(()=>{
+                            if (count151==1){
+                                document.getElementById('result').style.opacity="1";
+                                document.getElementById('result').style.transitionTimingFunction="linear"
+                                count11++;
+                            }
+                            else if(count151==2){
+                                document.getElementById('result').style.opacity="1";
+                                document.getElementById('result').style.transitionTimingFunction="linear"
+                                count151++;
+                            }
+                            else if(count151==3){
+                                document.getElementById('result').style.opacity="1";
+                                document.getElementById('result').style.transitionTimingFunction="linear"
+                                count151++;
+                            }
+                            else{
+                                document.getElementById('result').style.visibility="hidden"
+                                document.getElementById('result').style.transitionTimingFunction="linear"
+                                
+                            }
+                        },4000)
+                        document.getElementById('actual').style.visibility="visible";
+                        document.getElementById('answer').style.visibility="visible";
+                        document.getElementById('answer').innerHTML=crtop[a];
+                        a++;
+                        
+                    }
+                }
+                else{
+                    n4=4;
+                    if (n4==crtop[a]){
+                        let audio=new Audio("./music/correct-83487.mp3");
+                        audio.play()
+                        sum+=100;
+                        score.innerHTML=sum;
+                        document.getElementById('gif').src="./images/crt.gif";
+                        let count61=0;
+                        document.getElementById('result').style.transitionTimingFunction="linear"
+                        document.getElementById('result').style.visibility="visible";
+                        setInterval(()=>{
+                            if (count61==1){
+                                document.getElementById('result').style.opacity="1";
+                                document.getElementById('result').style.transitionTimingFunction="linear"
+                                count61++;
+                            }
+                            else if(count61==2){
+                                document.getElementById('result').style.opacity="0.5";
+                                document.getElementById('result').style.transitionTimingFunction="linear"
+                                count61++;
+                            }
+                            else if(count61==3){
+                                document.getElementById('result').style.opacity="1";
+                                document.getElementById('result').style.transitionTimingFunction="linear"
+                                count61++;
+                            }
+                            else{
+                                document.getElementById('result').style.visibility="hidden"
+                                document.getElementById('result').style.transitionTimingFunction="linear"
+                                
+                            }
+                        },4000)
+                        // document.getElementById('result').style.visibility="visible";
+                        console.log("ans"+crtop[a])
+                        console.log("op"+n4)
+                        a++;
+                        
+                    }
+                    else {
+                        let audio=new Audio("./music/fail-144746.mp3");
+                        audio.play()
+                        console.log("ans"+crtop[a])
+                        document.getElementById('gif').src="./images/wrongans.jpg";
+                        // alert("You are wrong");
+                        let count161=0;
+                        document.getElementById('result').style.transitionTimingFunction="linear"
+                        document.getElementById('result').style.visibility="visible";
+                        setInterval(()=>{
+                            if (count161==1){
+                                document.getElementById('result').style.opacity="1";
+                                document.getElementById('result').style.transitionTimingFunction="linear"
+                                count161++;
+                            }
+                            else if(count161==2){
+                                document.getElementById('result').style.opacity="1";
+                                document.getElementById('result').style.transitionTimingFunction="linear"
+                                count161++;
+                            }
+                            else if(count161==3){
+                                document.getElementById('result').style.opacity="1";
+                                document.getElementById('result').style.transitionTimingFunction="linear"
+                                count161++;
+                            }
+                            else{
+                                document.getElementById('result').style.visibility="hidden"
+                                document.getElementById('result').style.transitionTimingFunction="linear"
+                                
+                            }
+                        },4000)
+                        document.getElementById('actual').style.visibility="visible";
+                        document.getElementById('answer').style.visibility="visible";
+                        document.getElementById('answer').innerHTML=crtop[a];
+                        a++;
+                        
+                    }
+                }
+                
+            
+            }next();
+        }
+     </script>
+</body>
+</html>
